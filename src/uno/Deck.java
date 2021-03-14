@@ -39,17 +39,36 @@ public class Deck {
 	}
 	
 	// Pop card
-	public boolean popCard(int index) {
-		if (index < 0 || index > playerdeck.size()-1) {
+	public boolean popCard(int index, Card attack, Card defend) {
+		
+		if (index < 0 || index > playerdeck.size()) { // if index is not good
 			System.out.println("Неверный номер карты, слева направо с единицы!");
 			return false;
-		} else {
-			playerdeck.remove(index-1);
-			return true;
+		} else { // if its good
+			if (canBeat(attack, defend)) { // if you can beat 
+				playerdeck.remove(index-1);
+				return true;
+			}
+			return false;
 		}
 	}	
 	
+	// Beat card
+	public boolean canBeat(Card attack, Card defend) {
+		
+		System.out.println("Attacker: " + attack.getColor() + " " + attack.getValue());
+		System.out.println("Defender: " + defend.getColor() + " " + defend.getValue());
+		
+		if (attack.getColor() == defend.getColor() || attack.getValue() == defend.getValue())
+			return true;
+		else 
+			return false;
+	}
 	
+	// Choose card
+	public Card chooseCard(int index) {
+		return playerdeck.get(index);
+	}
 	
 	//Random integer
 	public int randomInt (int min, int max) {
@@ -75,6 +94,7 @@ public class Deck {
 		System.out.println(message);
 		System.out.print("             ");
 		System.out.println(colors);
+		System.out.println("Выберите карту из вашей колоды или возьмите карту (-1)");
 	}
 	
 }

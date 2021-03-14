@@ -12,13 +12,16 @@ public class Program {
 		Table table = new Table();
 		table.printTurn(playerDeck);
 		playerDeck.printDeck();
+		Card defender = table.getCard();
 		
 		// 2 & 3
 		int index;
 		Scanner in = new Scanner(System.in);
-		index = in.nextInt();
+		index = in.nextInt() - 1;
+		
 		if (index != -1) {
-			while (!playerDeck.popCard(index)) {
+			Card attacker = playerDeck.chooseCard(index);
+			while (!playerDeck.popCard(index, attacker, defender)) {
 				index = in.nextInt();
 			}
 		} else {
@@ -35,7 +38,7 @@ public class Program {
 		Deck playerDeck = new Deck(6);
 		while(playerDeck.getAmount() != 0) {
 			Turn(playerDeck);
-			playerDeck.printDeck();
+			
 		}
 
 		
