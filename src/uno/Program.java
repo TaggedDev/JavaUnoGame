@@ -10,20 +10,28 @@ public class Program {
 		
 		// 1
 		Table table = new Table();
-		table.printTurn(playerDeck);
+		Card card = new Card(); 
+		table.printTurn(playerDeck, card);
 		playerDeck.printDeck();
-		Card defender = table.getCard();
-		
+				
 		// 2 & 3
 		int index;
 		Scanner in = new Scanner(System.in);
 		index = in.nextInt() - 1;
 		
 		if (index != -1) {
-			Card attacker = playerDeck.chooseCard(index);
-			while (!playerDeck.popCard(index, attacker, defender)) {
-				index = in.nextInt();
+			
+			if (!(index < -1 || index == 0 || index > playerDeck.getAmount())) {
+				Card attacker = playerDeck.chooseCard(index);
+				Card defender = card;
+				
+				while (playerDeck.popCard(index, attacker, defender)) {
+					System.out.println("Выберите правильную карту");
+					index = in.nextInt();
+				}
 			}
+			
+			
 		} else {
 			playerDeck.addCard();
 		}

@@ -13,6 +13,7 @@ public class Deck {
 	
 	// Fill the deck with random cards
 	public ArrayList<Card> generateCards(int value) {
+		
 		ArrayList<Card> deck = new ArrayList<Card>();
 		// Filling the deck variable with random cards with random ints with random colors
 		for (int i = 0; i < value; i++) {
@@ -41,26 +42,23 @@ public class Deck {
 	// Pop card
 	public boolean popCard(int index, Card attack, Card defend) {
 		
-		if (index < 0 || index > playerdeck.size()) { // if index is not good
-			System.out.println("Неверный номер карты, слева направо с единицы!");
-			return false;
-		} else { // if its good
-			if (canBeat(attack, defend)) { // if you can beat 
-				playerdeck.remove(index-1);
-				return true;
-			}
-			return false;
+		if (canBeat(attack, defend)) { // if you can beat 
+			playerdeck.remove(index-1);
+			return true;
 		}
+		return false;
+		
 	}	
 	
 	// Beat card
 	public boolean canBeat(Card attack, Card defend) {
 		
-		System.out.println("Attacker: " + attack.getColor() + " " + attack.getValue());
-		System.out.println("Defender: " + defend.getColor() + " " + defend.getValue());
+		//System.out.println("Attacker (ЦВЕТ, ЗНАЧ): " + attack.getColor() + " " + attack.getValue());
+		//System.out.println("Defender (ЦВЕТ, ЗНАЧ): " + defend.getColor() + " " + defend.getValue());
 		
-		if (attack.getColor() == defend.getColor() || attack.getValue() == defend.getValue())
+		if (attack.getColor().equals(defend.getColor())|| (attack.getValue() == defend.getValue())) {
 			return true;
+		}
 		else 
 			return false;
 	}
