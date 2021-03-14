@@ -32,10 +32,25 @@ public class Deck {
 		this.amount = amount;
 	}
 	
-	// Add cards
-	public Deck addCard(Deck deck) {
-		return deck;
+	// Add card
+	public void addCard() {
+		Card card = new Card();
+		playerdeck.add(card);
 	}
+	
+	// Pop card
+	public boolean popCard(int index) {
+		if (index < 0 || index > playerdeck.size()-1) {
+			System.out.println("Ќеверный номер карты, слева направо с единицы!");
+			return false;
+		} else {
+			playerdeck.remove(index-1);
+			return true;
+		}
+	}	
+	
+	
+	
 	//Random integer
 	public int randomInt (int min, int max) {
 		return (int) (Math.random() * ++max) + min;

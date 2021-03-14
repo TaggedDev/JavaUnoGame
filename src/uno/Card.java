@@ -4,7 +4,7 @@ public class Card {
 	private int value;
 	private String color;
 	
-	//Value
+	//Value get set
 	public int getValue() {
 		return value;
 	}
@@ -12,7 +12,7 @@ public class Card {
 		this.value = value;
 	}
 	
-	// Color
+	// Color get set
 	public String getColor() {
 		return color.substring(0, 1);
 	}
@@ -20,17 +20,19 @@ public class Card {
 		this.color = color;
 	}
 	
-	
+	// Constructor
 	Card (int value, String color) {
 		this.color = color;
 		this.value = value;
+	}	
+	// Default constructor
+	Card () {
+		this.value = randomInt(0,8);
+		this.color = randomColor();
 	}
 	
 	
 	// Methods
-	
-	
-	
 	public int randomInt (int min, int max) {
 		return (int) (Math.random() * ++max) + min;
 	}
