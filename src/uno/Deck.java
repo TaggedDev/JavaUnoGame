@@ -7,9 +7,20 @@ public class Deck {
 	private int amount;
 	ArrayList<Card> playerdeck = new ArrayList<Card>();
 	
+	// Constructor
 	Deck(int value) {
 		playerdeck = generateCards(value);
 	}
+	
+	// Amount get set
+	public int getAmount() {
+		return playerdeck.size();
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	
+	// Methods
 	
 	// Fill the deck with random cards
 	public ArrayList<Card> generateCards(int value) {
@@ -24,14 +35,6 @@ public class Deck {
 		// return completed deck of 6 cards
 		return deck;
 	}
-		
-	// Amount get set
-	public int getAmount() {
-		return playerdeck.size();
-	}
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
 	
 	// Add card
 	public void addCard() {
@@ -40,43 +43,31 @@ public class Deck {
 	}
 	
 	// Pop card
-	public boolean popCard(int index, Card attack, Card defend) {
-		
-		if (canBeat(attack, defend)) { // if you can beat 
-			playerdeck.remove(index-1);
-			return true;
-		}
-		return false;
-		
-	}	
-	
-	// Beat card
-	public boolean canBeat(Card attack, Card defend) {
-		
-		//System.out.println("Attacker (ÖÂÅÒ, ÇÍÀ×): " + attack.getColor() + " " + attack.getValue());
-		//System.out.println("Defender (ÖÂÅÒ, ÇÍÀ×): " + defend.getColor() + " " + defend.getValue());
-		
-		if (attack.getColor().equals(defend.getColor())|| (attack.getValue() == defend.getValue())) {
-			return true;
-		}
-		else 
-			return false;
+	public void popCard(int index, Card attack) {
+			playerdeck.remove(index-1);		
 	}
 	
-	// Choose card
-	public Card chooseCard(int index) {
+	// Get card by index
+	private Card getCard(int index) {
 		return playerdeck.get(index);
+	}
+	
+	// Return card by index and deck
+	public Card chooseCard(int index, Deck deck) {
+		return deck.getCard(index);
 	}
 	
 	//Random integer
 	public int randomInt (int min, int max) {
 		return (int) (Math.random() * ++max) + min;
 	}
+	
 	// Random color
 	public String randomColor () {
 		String[] colors = {"Æ¸ëòûé", "Çåë¸íûé", "Ñèíèé", "Êğàñíûé"};
 		return colors[randomInt(0, 3)];
 	}
+	
 	// Print the deck to user
 	public void printDeck() {
 		ArrayList<Card> deck = playerdeck;

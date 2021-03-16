@@ -10,33 +10,29 @@ public class Program {
 		
 		// 1
 		Table table = new Table();
-		Card card = new Card(); 
+		Card card = table.generateCard();
 		table.printTurn(playerDeck, card);
 		playerDeck.printDeck();
 				
 		// 2 & 3
 		int index;
 		Scanner in = new Scanner(System.in);
-		index = in.nextInt() - 1;
+		index = in.nextInt();
 		
-		if (index != -1) {
-			
-			if (!(index < -1 || index == 0 || index > playerDeck.getAmount())) {
-				Card attacker = playerDeck.chooseCard(index);
-				Card defender = card;
-				
-				while (playerDeck.popCard(index, attacker, defender)) {
-					System.out.println("Выберите правильную карту");
-					index = in.nextInt();
-				}
-			}
-			
-			
-		} else {
-			playerDeck.addCard();
+		while ( (index < 0) || (index > playerDeck.getAmount()) ) {
+			index = in.nextInt(); // Asks user to input index until the integer is correct
 		}
 		
+		Card player = playerDeck.chooseCard(index, playerDeck);
 		
+		if (index == 0) {
+			playerDeck.addCard();
+		} else {
+			index--;
+			if (card.canBeat(player, card)) {
+				playerDeck.popCard(index, card);
+			}
+		}
 	}
 	
 	public static void main(String[] args) {

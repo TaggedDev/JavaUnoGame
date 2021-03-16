@@ -10,5 +10,10 @@ public class Table {
 		System.out.println();
 	}
 	
+	public Card generateCard() {
+		Card card = new Card();
+		return card;
+	}
+	
 	
 }
