@@ -23,12 +23,13 @@ public class Program {
 			index = in.nextInt(); // Asks user to input index until the integer is correct
 		}
 		
-		Card player = playerDeck.chooseCard(index, playerDeck);
+		
 		
 		if (index == 0) {
 			playerDeck.addCard();
 		} else {
 			index--;
+			Card player = playerDeck.chooseCard(index, playerDeck);
 			if (card.canBeat(player, card)) {
 				playerDeck.popCard(index, card);
 			}

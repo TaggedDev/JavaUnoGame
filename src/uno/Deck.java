@@ -44,7 +44,7 @@ public class Deck {
 	
 	// Pop card
 	public void popCard(int index, Card attack) {
-			playerdeck.remove(index-1);		
+			playerdeck.remove(index);		
 	}
 	
 	// Get card by index
