@@ -32,6 +32,8 @@ public class Program {
 			Card player = playerDeck.chooseCard(index, playerDeck);
 			if (card.canBeat(player, card)) {
 				playerDeck.popCard(index, card);
+			} else {
+				System.out.println("Выберите правильную карту!");
 			}
 		}
 	}

@@ -83,7 +83,7 @@ public class Deck {
 		System.out.println(message);
 		System.out.print("             ");
 		System.out.println(colors);
-		System.out.println("Выберите карту из вашей колоды или возьмите карту (-1)");
+		System.out.println("Выберите карту из вашей колоды или возьмите карту (0)");
 	}
 	
 }
